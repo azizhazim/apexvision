@@ -1,51 +1,41 @@
-import "./App.css";
-import { useState, useEffect } from "react";
-import { Container } from "./components/Container";
-import { Button } from "./components/Button";
-import { Divider } from "./components/Divider";
-import { Loader } from "./components/Loader";
-import { Textarea } from "./components/Textarea";
-import { Response } from "./components/Response";
-import ChatGPT from "./lib/chatgpt";
+import { useState } from 'react';
+import { Container } from './components/Container';
+import { Button } from './components/Button';
+import { Loader } from './components/Loader';
+import { Response } from './components/Response';
+import { Divider } from './components/Divider';
 
 function App() {
-	const [loading, setLoading] = useState(false);
-	const [response, setResponse] = useState("");
-	const [prompt, setPrompt] = useState("");
+    const [answer, setAnswer] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
-	useEffect(() => {}, [loading, response, prompt]);
+    const handleButtonPress = () => {
+        setLoading(true);
+        setAnswer(null);
+        setError(null);
 
-	const getChatGPTResponse = async () => {
-		setLoading(true);
-		setResponse("");
-		try {
-			const resp = await new ChatGPT(prompt).getCompletion(prompt);
-			setResponse(resp);
-			setLoading(false);
-		} catch (error) {
-			setResponse(error);
-			setLoading(false);
-		}
-	};
+        chrome.runtime.sendMessage({ action: "get_chat_gpt_response" }, function (response) {
+            if (chrome.runtime.lastError) {
+                setError(chrome.runtime.lastError.message);
+            } else if (response.error) {
+                setError(response.error);
+            } else {
+                setAnswer(response.answer);
+            }
+            setLoading(false);
+        });
+    };
 
-	const onClick = () => {
-		getChatGPTResponse();
-	};
-
-	const onChange = (event) => {
-		setPrompt(event.target.value);
-	};
-
-	return (
-		<Container.Outer>
-			<Container.Inner>
-				<Textarea onChange={onChange} />
-				<Button onClick={onClick} />
-				<Divider />
-				{loading ? <Loader /> : <Response response={response} />}
-			</Container.Inner>
-		</Container.Outer>
-	);
+    return (
+        <Container className="w-full h-full flex items-center justify-center">
+            <div className="text-center">
+                {loading ? <Loader /> : <Button onClick={handleButtonPress} />}
+                {answer && <><Divider /><Response response={answer} /></>}
+                {error && <p className="mt-8 text-lg text-red-500">{error}</p>}
+            </div>
+        </Container>
+    );
 }
 
 export default App;

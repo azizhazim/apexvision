@@ -1,14 +1,9 @@
+// Divider.js
 export function Divider() {
-	return (
-		<div className="relative">
-			<div className="absolute inset-0 flex items-center" aria-hidden="true">
-				<div className="w-full border-t border-gray-300"></div>
-			</div>
-			<div className="relative flex justify-start">
-				<span className="bg-zinc-200 pr-3 text-md font-medium text-gray-700">
-					GPT Response
-				</span>
-			</div>
-		</div>
-	);
+    return (
+        <div style={{position: 'relative', marginTop: '60px'}}>
+            <div style={{position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', borderTop: '1px solid #e0e0e0'}} aria-hidden="true"></div>
+            <div style={{position: 'relative', display: 'flex', justifyContent: 'start'}}></div>
+        </div>
+    );
 }

@@ -4,7 +4,28 @@
   "description": "ChatGPT Extension",
   "version": "1.0",
   "action": {
-    "default_popup": "./index.html",
+    "default_popup": "index.html",
     "default_icon": "./openai-avatar.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": ["activeTab", "tabs", "storage"],
+  "host_permissions": ["<all_urls>"],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ],
+  "icons": {
+  },
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+Q", 
+        "mac": "MacCtrl+Q"   
+      }
+    }
   }
 }
