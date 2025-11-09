@@ -1,0 +1,50 @@
+name: Build iOS App
+
+on:
+  workflow_dispatch:  # Manual trigger
+  push:
+    branches:
+      - main
+    paths:
+      - 'ios-app/**'
+
+jobs:
+  build:
+    name: Build iOS App
+    runs-on: macos-latest
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+      
+      - name: Install CocoaPods
+        run: |
+          cd ios-app/ApexVisionAI
+          pod install
+      
+      - name: Build for Simulator
+        run: |
+          cd ios-app/ApexVisionAI
+          xcodebuild \
+            -workspace ApexVisionAI.xcworkspace \
+            -scheme ApexVisionAI \
+            -sdk iphonesimulator \
+            -configuration Debug \
+            -destination 'platform=iOS Simulator,name=iPhone 15 Pro' \
+            clean build \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO
+      
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-app-build
+          path: ios-app/ApexVisionAI/build/
+          retention-days: 7
+
