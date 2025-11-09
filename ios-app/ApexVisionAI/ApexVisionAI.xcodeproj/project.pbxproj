@@ -167,7 +167,7 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		SZADEJKLTUU EU56WZ6BY0A9 /* ApexVisionAI */ = {
+		SZADEJKLTUU6EU56WZ6BY0A9 /* ApexVisionAI */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = TZADEJKLUVVFV57XA7CZ1B0 /* Build configuration list for PBXNativeTarget "ApexVisionAI" */;
 			buildPhases = (
@@ -196,12 +196,12 @@
 				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
-					SZADEJKLTUU EU56WZ6BY0A9 = {
+					SZADEJKLTUU6EU56WZ6BY0A9 = {
 						CreatedOnToolsVersion = 15.0;
 					};
 				};
 			};
-			buildConfigurationList = XZADEJKLYZZ JZ61BE1GD5F4 /* Build configuration list for PBXProject "ApexVisionAI" */;
+			buildConfigurationList = XZADEJKLYZZJZ61BE1GD5F4 /* Build configuration list for PBXProject "ApexVisionAI" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -214,7 +214,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				SZADEJKLTUU EU56WZ6BY0A9 /* ApexVisionAI */,
+				SZADEJKLTUU6EU56WZ6BY0A9 /* ApexVisionAI */,
 			);
 		};
 /* End PBXProject section */
@@ -447,7 +447,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		XZADEJKLYZZ JZ61BE1GD5F4 /* Build configuration list for PBXProject "ApexVisionAI" */ = {
+		XZADEJKLYZZJZ61BE1GD5F4 /* Build configuration list for PBXProject "ApexVisionAI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				YZADEJKLZAAKA62CF2HE6G5 /* Debug */,
