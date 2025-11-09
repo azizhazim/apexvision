@@ -1,0 +1,37 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '15.0'
+
+target 'ApexVisionAI' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Firebase
+  pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
+  pod 'Firebase/Analytics'
+  
+  # Google Sign-In
+  pod 'GoogleSignIn'
+  
+  # Networking
+  pod 'Alamofire', '~> 5.8'
+  
+  target 'ApexVisionAITests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'ApexVisionAIUITests' do
+    # Pods for testing
+  end
+
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '15.0'
+    end
+  end
+end
+
