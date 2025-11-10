@@ -18,11 +18,13 @@ xcodebuild -workspace ApexVisionAI.xcworkspace \
   -scheme ApexVisionAI \
   -sdk iphonesimulator \
   -configuration Debug \
-  -destination 'id=584928FD-0391-42BF-B896-EB6C782822C7' \
-  clean build \
+  -arch x86_64 \
+  -arch arm64 \
+  build \
   CODE_SIGN_IDENTITY="" \
   CODE_SIGNING_REQUIRED=NO \
-  CODE_SIGNING_ALLOWED=NO
+  CODE_SIGNING_ALLOWED=NO \
+  ONLY_ACTIVE_ARCH=NO
 
 if [ $? -eq 0 ]; then
   echo ""
