@@ -11,20 +11,19 @@ echo "========================================="
 echo "Building ApexVision AI iOS App"
 echo "========================================="
 
-# Build for simulator
+# Build for iOS device (no simulator runtime needed)
 echo ""
-echo "Step 1: Building for iOS Simulator..."
+echo "Step 1: Building for iOS Device..."
 xcodebuild -workspace ApexVisionAI.xcworkspace \
   -scheme ApexVisionAI \
-  -sdk iphonesimulator \
-  -configuration Debug \
-  -arch x86_64 \
+  -sdk iphoneos \
+  -configuration Release \
   -arch arm64 \
-  build \
+  archive \
+  -archivePath ~/ApexVisionAI.xcarchive \
   CODE_SIGN_IDENTITY="" \
   CODE_SIGNING_REQUIRED=NO \
-  CODE_SIGNING_ALLOWED=NO \
-  ONLY_ACTIVE_ARCH=NO
+  CODE_SIGNING_ALLOWED=NO
 
 if [ $? -eq 0 ]; then
   echo ""
