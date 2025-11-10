@@ -18,7 +18,7 @@ xcodebuild -workspace ApexVisionAI.xcworkspace \
   -scheme ApexVisionAI \
   -sdk iphonesimulator \
   -configuration Debug \
-  -destination 'generic/platform=iOS Simulator' \
+  -destination 'id=584928FD-0391-42BF-B896-EB6C782822C7' \
   clean build \
   CODE_SIGN_IDENTITY="" \
   CODE_SIGNING_REQUIRED=NO \
