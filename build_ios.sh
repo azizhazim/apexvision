@@ -13,7 +13,27 @@ echo "========================================="
 
 # Build for iOS device (no simulator runtime needed)
 echo ""
-echo "Step 1: Building for iOS Device..."
+echo "Step 1: Building Pods dependencies..."
+xcodebuild -workspace ApexVisionAI.xcworkspace \
+  -scheme Pods-ApexVisionAI \
+  -sdk iphoneos \
+  -configuration Release \
+  -arch arm64 \
+  build \
+  CODE_SIGN_IDENTITY="" \
+  CODE_SIGNING_REQUIRED=NO \
+  CODE_SIGNING_ALLOWED=NO
+
+if [ $? -ne 0 ]; then
+    echo ""
+    echo "========================================="
+    echo "❌ PODS BUILD FAILED"
+    echo "========================================="
+    exit 1
+fi
+
+echo ""
+echo "Step 2: Building ApexVisionAI app..."
 xcodebuild -workspace ApexVisionAI.xcworkspace \
   -scheme ApexVisionAI \
   -sdk iphoneos \
